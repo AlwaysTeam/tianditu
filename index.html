@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="http://lbs.tianditu.gov.cn/images/favicon.ico" />
+    <title>天地图</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      #mapDiv {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script
+      src="https://api.tianditu.gov.cn/api?v=4.0&tk=5371db494093d4275fa330692637c9f6"
+      type="text/javascript"
+    ></script>
+    <script>
+      var map;
+      var zoom = 12;
+      function onLoad() {
+        map = new T.Map("mapDiv");
+        map.centerAndZoom(new T.LngLat(112.84741, 35.50216), zoom);
+        //图层切换控件----------------------------------------
+        var ctrl = new T.Control.MapType();
+        map.addControl(ctrl);
+        //缩放控件----------------------------------------------------
+        control = new T.Control.Zoom();
+        control.setPosition(T_ANCHOR_TOP_RIGHT);
+        map.addControl(control);
+        // 创建比例尺控件对象---------------------------------------
+        var scale = new T.Control.Scale();
+        map.addControl(scale);
+        // 鹰眼控件----------------------------------------------------
+        var miniMap = new T.Control.OverviewMap({
+          isOpen: true,
+          size: new T.Point(150, 150),
+        });
+        map.addControl(miniMap);
+        //创建版权控件对象---------------------------------------
+        var copyControl = new T.Control.Copyright({
+          position: T_ANCHOR_TOP_LEFT,
+        });
+        map.addControl(copyControl);
+        var bs = map.getBounds(); //返回地图可视区域
+        copyControl.addCopyright({
+          id: 1,
+          content:
+            "<a href='https://console.tianditu.gov.cn' target='_blank' style='font-size:14px;background:yellow'>本项目仅供学习使用,如需商用请申请官方授权!</a>",
+          bounds: bs,
+        });
+        //点击事件-----------------------------------------------------
+        map.addEventListener("click", (e) => {
+          console.log("选点坐标:", e.lnglat.getLng() + "," + e.lnglat.getLat());
+          map.clearOverLays();
+          var marker = new T.Marker(
+            new T.LngLat(e.lnglat.getLng(), e.lnglat.getLat())
+          );
+          map.addOverLay(marker);
+          marker.addEventListener("click", () => {
+            alert(e.lnglat.getLng() + "," + e.lnglat.getLat());
+          });
+        });
+      }
+    </script>
+  </head>
+  <body onLoad="onLoad()">
+    <div class="container">
+      <div>
+        <input
+          type="button"
+          id="button1"
+          onClick="map.zoomIn()"
+          value="放大地图"
+        />
+        <input
+          type="button"
+          id="button2"
+          onClick="map.zoomOut()"
+          value="缩小地图"
+        />
+        <input
+          type="button"
+          id="button2"
+          onClick="map.panTo(new T.LngLat(116.64899, 40.12948))"
+          value="平移至北京顺义"
+        />
+        <input type="button" onClick="map.setStyle('black')" value="block" />
+        <input type="button" onClick="map.setStyle('indigo')" value="indigo" />
+        <input type="button" onClick="map.removeStyle()" value="恢复默认" />
+        <input
+          type="button"
+          onClick="window.open('./car_track.html','_blank')"
+          value="车辆轨迹"
+        />
+      </div>
+      <div id="mapDiv"></div>
+    </div>
+  </body>
+</html>
