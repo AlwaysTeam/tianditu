@@ -12,7 +12,7 @@
 
 [天地图开发资源平台](http://lbs.tianditu.gov.cn/home.html)
 
-> [!WARNING] 警告
+> [!WARNING]警告
 > 本示例中所使用的KEY已绑定域名,使用过程中请自行申请替换key，否则无法使用!
 
 ## 示例页面
