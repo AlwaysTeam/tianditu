@@ -1,6 +1,6 @@
 <div align="center">
-  <a href="https://team.zhangsifan.com">
-    <img src="https://map.tianditu.gov.cn/static/media/tdt_logo.6244f04b7c268b5b35e78c1ec4a277c1.svg" alt="MAP WORLD logo" width="200" >
+  <a href="www.tianditu.gov.cn">
+    <img src="https://map.tianditu.gov.cn/static/media/tdt_logo.6244f04b7c268b5b35e78c1ec4a277c1.svg" alt="天地图" width="200" >
   </a>
 
   <h3 align="center">天地图</h3>
@@ -12,10 +12,10 @@
 
 [天地图开发资源平台](http://lbs.tianditu.gov.cn/home.html)
 
-> [!WARNING]警告
+> [!WARNING]
 > 本示例中所使用的KEY已绑定域名,使用过程中请自行申请替换key，否则无法使用!
 
-## 示例页面
+## 示例
 
 - [地图选点](https://team.zhangsifan.com/tianditu/index.html)
 - [车辆轨迹](https://team.zhangsifan.com/tianditu/car_track.html)
